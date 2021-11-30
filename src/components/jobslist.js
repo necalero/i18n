@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import Job from "./job";
 
 const JobsList = () => {
+  const intl = useIntl();
   const [offers] = useState([
     {
       id: "0001",
@@ -29,17 +32,39 @@ const JobsList = () => {
     },
   ]);
 
+  let headerStyle = {
+    "background-color": "black",
+    color: "white",
+  };
+
+  if (intl.locale === "es-ES") {
+    headerStyle = { "background-color": "white", color: "black" };
+  }
+  console.log(intl.locale);
   return (
     <div>
       <table className="table">
         <thead className="thead-dark">
-          <tr>
+          <tr style={headerStyle}>
             <th scope="col">#</th>
-            <th scope="col">Position</th>
-            <th scope="col">Company</th>
-            <th scope="col">Salary</th>
-            <th scope="col">City</th>
-            <th scope="col">Publication date</th>
+            <th scope="col">
+              <FormattedMessage id="Position" defaultMessage='Position'/>
+            </th>
+            <th scope="col">
+              <FormattedMessage id="Company" defaultMessage='Company'/>
+            </th>
+            <th scope="col">
+              <FormattedMessage id="Salary" defaultMessage='Salary'/>
+            </th>
+            <th scope="col">
+              <FormattedMessage id="City" defaultMessage='City'/>
+            </th>
+            <th scope="col">
+              <FormattedMessage id="PublicationDate" defaultMessage='Publication date'/>
+            </th>
+            <th scope="col">
+              <FormattedMessage id="Views" defaultMessage='Views'/>
+            </th>
           </tr>
         </thead>
         <tbody>
